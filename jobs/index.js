@@ -2,7 +2,7 @@ import cron from 'node-cron';
 import updateSkusDataInGoogleSheet from '../controllers/index.js';
 import sendEmail from '../controllers/mail.js';
 
-const schedule = cron.schedule('1 7 * * *', async() => {
+const schedule = cron.schedule('1 4 * * *', async() => {
     console.log(`👉 Sheet update job started at ${new Date()}`);
     await updateSkusDataInGoogleSheet();
     console.log(`✅ Sheet update finished at ${new Date()}`);
