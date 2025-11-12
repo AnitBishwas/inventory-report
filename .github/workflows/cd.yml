@@ -1,0 +1,34 @@
+name: CD Pipeline
+
+on:
+  workflow_run:
+    workflows: ["CI Pipeline"]
+    types:
+        - completed
+
+jobs:
+
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Free Disk Space Before Build
+      run: |
+        echo "Disk space before cleanup:"
+        df -h
+        sudo rm -rf /usr/local/.ghcup
+        sudo rm -rf /opt/hostedtoolcache/CodeQL
+        sudo rm -rf /usr/local/lib/android/sdk/ndk
+        sudo rm -rf /usr/share/dotnet
+        sudo rm -rf /opt/ghc
+        sudo rm -rf /usr/local/share/boost
+        sudo apt-get clean
+        echo "Disk space after cleanup:"
+        df -h
+    - name: Pull Docker Image
+      run: sudo docker pull anitbishwas/inventory-report:latest
+    - name: Delete Old Docker Container
+      run: sudo docker rm -f inventory-report || true
+    - name: Run Docker Container
+      run: sudo docker run --env-file ~/secrets/.env -d -p 8080:8080  --name inventory-report anitbishwas/inventory-report
