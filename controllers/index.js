@@ -40,6 +40,7 @@ const updateInventorySheet = async (sheet, skusList) => {
     // );
     await sheet.setHeaderRow(["Sku","EAN code","Variant Id","Product Id","Title","Past 30 Days Sale","Past 90 Days Sale","Days Covered","DRR","Revenue loss","Current Inventory"]); 
     const currentGoogleSheetSkus = []; // removed current existing sku mapping
+
     for (let i = 0; i < skusList.length; i++) {
       let item = skusList[i];
       let sku =
@@ -48,7 +49,7 @@ const updateInventorySheet = async (sheet, skusList) => {
         (el) => el == sku
       );
       console.log(sku,isSkuRegisteredInSheet);
-      
+
       if (isSkuRegisteredInSheet) {
         let updateIndex = i;
         await updateExistingRowInSheet(sheet, updateIndex, item);
