@@ -14,8 +14,8 @@ const updateSkusDataInGoogleSheet = async () => {
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, googleToken);
     await doc.loadInfo();
     const sheet = doc.sheetsById[process.env.GOOGLE_SHEET_INVENTORY_ID];
-    console.log(sheet);
-    
+    console.log(sheet,process.env.GOOGLE_SHEET_INVENTORY_ID);
+
     await sheet.clear();
     const { variantLevelData, productLevelData } = await generateProductsData();
     console.log('👉 updating inventory data for variants');
