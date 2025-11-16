@@ -14,8 +14,7 @@ const updateSkusDataInGoogleSheet = async () => {
     const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID, googleToken);
     await doc.loadInfo();
     const sheet = await doc.sheetsById[process.env.GOOGLE_SHEET_INVENTORY_ID];
-    console.log(sheet);
-    
+
     await sheet.clear();
     const { variantLevelData, productLevelData } = await generateProductsData();
     console.log('👉 updating inventory data for variants');
@@ -36,9 +35,10 @@ const updateSkusDataInGoogleSheet = async () => {
 };
 const updateInventorySheet = async (sheet, skusList) => {
   try {
-    const currentGoogleSheetSkus = await getCurrentListedSkusInGoogleSheet(
-      sheet
-    );
+    // const currentGoogleSheetSkus = await getCurrentListedSkusInGoogleSheet(
+    //   sheet
+    // );
+    const currentGoogleSheetSkus = []; // removed current existing sku mapping
     for (let i = 0; i < skusList.length; i++) {
       let item = skusList[i];
       let sku =
