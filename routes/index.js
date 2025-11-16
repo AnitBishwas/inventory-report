@@ -7,6 +7,7 @@ const appRoutes = Router();
 appRoutes.get("/generateData", async (req, res) => {
   try {
     console.log(`👉 Sheet update job started at ${new Date()}`);
+    console.log(process.env)
     await updateSkusDataInGoogleSheet();
     console.log(`✅ Sheet update finished at ${new Date()}`);
   } catch (err) {
