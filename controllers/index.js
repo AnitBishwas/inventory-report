@@ -48,6 +48,7 @@ const updateInventorySheet = async (sheet, skusList) => {
         (el) => el == sku
       );
       console.log(sku,isSkuRegisteredInSheet);
+      
       if (isSkuRegisteredInSheet) {
         let updateIndex = i;
         await updateExistingRowInSheet(sheet, updateIndex, item);
