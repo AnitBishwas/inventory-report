@@ -25,7 +25,8 @@ const sendEmail = async (recipientEmail) => {
           "aman.nigam@swissbeauty.in",
           "samridhi@swissbeauty.in",
           "divyani.singh@swissbeauty.in",
-          "panshul.jaggi@swissbeauty.in"
+          "panshul.jaggi@swissbeauty.in",
+          "lavish.wadhwani@swissbeauty.in"
         ],
       },
       ReplyToAddresses: [],
